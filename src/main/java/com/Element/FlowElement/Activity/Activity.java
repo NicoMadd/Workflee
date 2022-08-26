@@ -2,6 +2,6 @@ package com.Element.FlowElement.Activity;
 
 import com.Element.FlowElement.FlowElement;
 
-public class Activity extends FlowElement {
+public abstract class Activity extends FlowElement {
 
 }
