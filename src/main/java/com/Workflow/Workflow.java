@@ -10,8 +10,9 @@ public class Workflow {
     Definition definition;
     List<Task> tasksHistory = null;
 
-    public Workflow() {
+    public Workflow(Definition definition) {
         tasksHistory = new LinkedList<Task>();
+        this.definition = definition;
     }
 
     public State getState() {
