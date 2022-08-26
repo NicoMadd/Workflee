@@ -15,3 +15,6 @@ The project will be based on the following sources and products:
 -   https://www.jbpm.org/
 -   https://es.bonitasoft.com/biblioteca/la-guia-definitiva-de-bpmn2
 -   https://www.bpmn.org/
+-   https://www.youtube.com/watch?v=BwkNceoybvA
+-   https://www.lucidchart.com/pages/bpmn
+-   https://www.lucidchart.com/pages/bpmn-bpmn-2.0-tutorial
