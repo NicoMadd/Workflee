@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.Workflow.Definition;
 import com.Workflow.State;
 import com.Workflow.Task;
 import com.Workflow.Workflow;
@@ -14,17 +15,16 @@ import com.Workflow.Workflow;
 public class WorkflowTests {
 
     @Test
-    public void testWorkflow() {
-        System.out.println("testWorkflow");
-        Workflow workflow = new Workflow();
-        System.out.println(workflow);
+    @DisplayName("Workflow should have a definition")
+    public void workflowShouldHaveDefinition() {
+        new Workflow(new Definition());
     }
 
     @Test
     @DisplayName("Add a new task to the workflow history")
-
     public void addTaskToWorkflowHistory() {
-        Workflow workflow = new Workflow();
+        Definition definition = new Definition();
+        Workflow workflow = definition.createWorkflow();
         workflow.addTask(new Task());
 
         List<Task> tasks = workflow.getTasks();
@@ -34,7 +34,8 @@ public class WorkflowTests {
     @Test
     @DisplayName("New Workflows should have initial state")
     public void newWorkflowShouldHaveInitialState() {
-        Workflow workflow = new Workflow();
+        Definition definition = new Definition();
+        Workflow workflow = definition.createWorkflow();
         State state = workflow.getState();
         assertEquals(state, State.INITIAL);
     }
