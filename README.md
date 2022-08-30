@@ -18,3 +18,22 @@ The project will be based on the following sources and products:
 -   https://www.youtube.com/watch?v=BwkNceoybvA
 -   https://www.lucidchart.com/pages/bpmn
 -   https://www.lucidchart.com/pages/bpmn-bpmn-2.0-tutorial
+
+---
+
+## Proposed Schemas :construction:
+
+### Graph Based
+
+#### Roadmap :rocket:
+
+##### Develop a Graph based architecture in which a user can move through nodes.
+
+1. Create a graph **Graph**
+2. Graph has a number of nodes **Node**
+3. Nodes have a relationship with other nodes **Relation**
+4. User can use this graph and know in which node they are. **Mapping**
+5. User can move through nodes **Transition**
+6. A node can be of a specific type indicating their behaviour **Generic Node**
+7. Node difference an incoming node from an outcoming one.
+8. Nodes have Transition restrictions **Transition**
