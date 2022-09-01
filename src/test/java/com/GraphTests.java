@@ -199,7 +199,7 @@ public class GraphTests {
 
         trackingGraph.moveTo(outgoing);
 
-        assertEquals(trackingGraph.getActualNode(), outgoing);
+        assertNotEquals(trackingGraph.getActualNode(), outgoing);
 
     }
 
