@@ -14,6 +14,7 @@ import com.Graph.Graph;
 import com.Graph.TrackingGraph;
 import com.Graph.Node.Node;
 import com.Graph.Node.RestrictableNode;
+import com.Graph.Node.Restriction.Restriction;
 
 public class GraphTests {
 
@@ -124,15 +125,82 @@ public class GraphTests {
         assertNotEquals(node.getIncomings().get(0), node.getOutgoings().get(0));
     }
 
-    // @Test
-    // public void restrictableNodeWithouteRestriction() {
-    // RestrictableNode<Integer> node = new RestrictableNode<>();
+    @Test
+    public void restrictableNodeWithRestriction() {
+        RestrictableNode<Integer> restrictedNode = new RestrictableNode<>();
 
-    // // add an outgoing node
+        // create an outgoing node
+        Node<Integer> outgoing = new Node<>();
 
-    // Node<Integer> outgoing = new Node<>();
-    // node.addOutgoing(outgoing);
+        // set data to 1
+        outgoing.setData(1);
 
-    // }
+        // add the outgoing node to the restrictedNode
+        restrictedNode.addOutgoing(outgoing);
+
+        // create a restriction and add it to the restricted node
+        Restriction<Integer> restriction = Restriction.predicate(n -> {
+            return n.getData() > 0;
+        });
+        restrictedNode.addRestriction(restriction);
+
+        // join node into a list
+        List<Node<Integer>> nodes = Arrays.asList(new Node[] { restrictedNode, outgoing });
+
+        // create a tracking graph
+        TrackingGraph<Integer> trackingGraph = new TrackingGraph<>(nodes);
+        trackingGraph.moveTo(outgoing);
+
+        assertTrue(trackingGraph.getActualNode().equals(outgoing));
+
+    }
+
+    @Test
+    public void restrictableNodeWithRestrictionTwoLeaps() {
+
+        // Create two restriction nodes and one simple node
+
+        RestrictableNode<Integer> firstRestrictedNode = new RestrictableNode<>();
+        RestrictableNode<Integer> secondRestrictedNode = new RestrictableNode<>();
+        Node<Integer> outgoing = new Node<>();
+
+        // set datas to the nodes
+        firstRestrictedNode.setData(0);
+        secondRestrictedNode.setData(1);
+        outgoing.setData(1);
+
+        // add the secondRestrictedNode to the firstRestrictedNode
+        firstRestrictedNode.addOutgoing(secondRestrictedNode);
+
+        // add the outgoing node to the second restrictedNode
+        secondRestrictedNode.addOutgoing(outgoing);
+
+        // create a restriction and add it to the first restricted node
+        Restriction<Integer> moreThanZeroRest = Restriction.predicate(n -> {
+            return n.getData() > 0;
+        });
+        firstRestrictedNode.addRestriction(moreThanZeroRest);
+
+        // create a restriction and add it to the second restricted node
+
+        Restriction<Integer> moreThanHundredRest = Restriction.predicate(n -> {
+            return n.getData() > 100;
+        });
+        secondRestrictedNode.addRestriction(moreThanHundredRest);
+
+        // join nodes into a list
+        List<Node<Integer>> nodes = Arrays.asList(new Node[] { firstRestrictedNode, secondRestrictedNode, outgoing });
+
+        // create a tracking graph
+        TrackingGraph<Integer> trackingGraph = new TrackingGraph<>(nodes);
+        trackingGraph.moveTo(secondRestrictedNode);
+
+        assertEquals(trackingGraph.getActualNode(), secondRestrictedNode);
+
+        trackingGraph.moveTo(outgoing);
+
+        assertEquals(trackingGraph.getActualNode(), outgoing);
+
+    }
 
 }
