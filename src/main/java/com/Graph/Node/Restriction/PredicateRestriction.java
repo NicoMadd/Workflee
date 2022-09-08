@@ -6,9 +6,9 @@ import com.Graph.Node.Node;
 
 public class PredicateRestriction<T> extends Restriction<T> {
 
-    private Predicate<Node<? extends T>> predicate;
+    private Predicate<Node<T>> predicate;
 
-    public PredicateRestriction(Predicate<Node<? extends T>> predicate) {
+    public PredicateRestriction(Predicate<Node<T>> predicate) {
         super();
         this.predicate = predicate;
     }

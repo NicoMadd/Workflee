@@ -3,19 +3,12 @@ package com.Definition;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.Element.Element;
 import com.Element.FlowElement.Activity.Task;
-import com.Element.FlowElement.Event.End;
 import com.Element.FlowElement.Event.Start;
-import com.Element.Step.Step;
 import com.Workflow.Definition;
-import com.Workflow.State;
-import com.Workflow.Workflow;
 
 public class DefinitionOneTask {
 

@@ -2,7 +2,6 @@ package com.Graph.Node;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Predicate;
 
 import com.Graph.Node.Restriction.Restriction;
 

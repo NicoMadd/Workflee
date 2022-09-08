@@ -2,6 +2,7 @@ package com;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -18,46 +19,47 @@ import com.Graph.Node.Restriction.Restriction;
 
 public class GraphTests {
 
-    public List<Node<?>> getSequentialNodes() {
+    public List<Node<Object>> getSequentialNodes() {
         // Create 3 nodes and relate sequentially to each
-        Node<?> node1 = new Node<>();
-        Node<?> node2 = new Node<>();
-        Node<?> node3 = new Node<>();
+        Node<Object> node1 = new Node<>();
+        Node<Object> node2 = new Node<>();
+        Node<Object> node3 = new Node<>();
 
         node1.addOutgoing(node2);
         node2.addOutgoing(node3);
         node3.addOutgoing(node1);
 
-        return Arrays.asList(new Node[] { node1, node2, node3 });
+        return Arrays.asList(node1, node2, node3);
     }
 
-    public TrackingGraph getTrackingGraph(List<Node<?>> nodes) {
-        return new TrackingGraph(nodes);
+    public TrackingGraph<Object> getTrackingGraph(List<Node<Object>> nodes) {
+        return new TrackingGraph<>(nodes);
     }
 
     @Test
     public void createAGraph() {
-        Graph graph = new Graph();
+        Graph<Object> graph = new Graph<>();
+        assertNotNull(graph);
     }
 
     @Test
     public void graphHasANumberOfNodes() {
-        Graph graph = new Graph();
-        List<Node<?>> nodes = graph.getNodes();
+        Graph<Object> graph = new Graph<>();
+        List<Node<Object>> nodes = graph.getNodes();
         assertTrue(nodes != null && nodes.size() >= 0);
     }
 
     @Test
     public void nodesHaveARelationshipWithOtherNodes() {
-        Node<?> node = new Node<>();
-        List<Node<?>> neighbors = node.getNeighbors();
+        Node<Object> node = new Node<>();
+        List<Node<Object>> neighbors = node.getNeighbors();
         assertTrue(neighbors != null && neighbors.size() >= 0);
     }
 
     @Test
     public void usersCanUseAGraphAndKnowWhereTheyAre() {
 
-        TrackingGraph graph = getTrackingGraph(getSequentialNodes());
+        TrackingGraph<Object> graph = getTrackingGraph(getSequentialNodes());
 
         Node<?> actualNode = graph.getActualNode();
 
@@ -67,15 +69,15 @@ public class GraphTests {
     @Test
     public void usersCanMoveThroughNodes() {
 
-        TrackingGraph graph = getTrackingGraph(getSequentialNodes());
+        TrackingGraph<Object> graph = getTrackingGraph(getSequentialNodes());
 
-        Node<?> actualNode = graph.getActualNode();
+        Node<Object> actualNode = graph.getActualNode();
 
-        List<Node<?>> neighbors = actualNode.getNeighbors();
+        List<Node<Object>> neighbors = actualNode.getNeighbors();
 
         int nextInt = new Random().nextInt(neighbors.size());
 
-        Node<?> nextNode = neighbors.get(nextInt);
+        Node<Object> nextNode = neighbors.get(nextInt);
         graph.moveTo(nextNode);
 
         actualNode = graph.getActualNode();
@@ -145,7 +147,7 @@ public class GraphTests {
         restrictedNode.addRestriction(restriction);
 
         // join node into a list
-        List<Node<Integer>> nodes = Arrays.asList(new Node[] { restrictedNode, outgoing });
+        List<Node<Integer>> nodes = Arrays.asList(restrictedNode, outgoing);
 
         // create a tracking graph
         TrackingGraph<Integer> trackingGraph = new TrackingGraph<>(nodes);
@@ -189,7 +191,7 @@ public class GraphTests {
         secondRestrictedNode.addRestriction(moreThanHundredRest);
 
         // join nodes into a list
-        List<Node<Integer>> nodes = Arrays.asList(new Node[] { firstRestrictedNode, secondRestrictedNode, outgoing });
+        List<Node<Integer>> nodes = Arrays.asList(firstRestrictedNode, secondRestrictedNode, outgoing);
 
         // create a tracking graph
         TrackingGraph<Integer> trackingGraph = new TrackingGraph<>(nodes);
