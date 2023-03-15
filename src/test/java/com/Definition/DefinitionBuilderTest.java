@@ -11,10 +11,10 @@ import org.junit.jupiter.api.Test;
 import com.Element.Element;
 import com.Element.FlowElement.Event.End;
 import com.Element.FlowElement.Event.Start;
-import com.Workflow.Definition;
 import com.Workflow.Workflow;
+import com.Workflow.Definition.Definition;
 
-public class DefinitionTests {
+public class DefinitionBuilderTest {
 
     // @Test
     // @DisplayName("Definition should create a workflow")

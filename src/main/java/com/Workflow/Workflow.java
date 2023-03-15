@@ -3,6 +3,8 @@ package com.Workflow;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.Workflow.Definition.Definition;
+
 public class Workflow {
 
     String id;
